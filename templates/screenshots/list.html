@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Screenshots</title>
+    <style>
+    	p, h2 {
+    		max-width: 80%;
+    		margin: 0 auto;
+    		margin-bottom: 10px;
+    	}
+        img {
+		  border: 1px solid black;
+		  max-width: 80%;
+		  display: block;
+		  margin: 0 auto;
+		  margin-bottom: 10px;
+		}
+		/* Add a heading */
+        h1 {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Set font for the text */
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Screenshots</h1>
+    <div th:each="screenshot : ${screenshots}">
+        <h2 th:text="${screenshot.name}"></h2>
+        <p th:text="${screenshot.step}"></p>
+        <img th:src="${screenshot.screenshot}" />
+    </div>
+</body>
+</html>

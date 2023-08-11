@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Screenshots</title>
+    <style>
+        img {
+		  border: 1px solid black;
+		  max-width: 80%;
+		  display: block;
+		  margin: 0 auto;
+		}
+		/* Add a heading */
+        h1 {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Set font for the text */
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Screenshots</h1>
+    <div th:each="imageDataURI : ${imageDataURIs}">
+        <img th:src="${imageDataURI}" />
+    </div>
+</body>
+</html>
+

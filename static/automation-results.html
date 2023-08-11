@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table with JSON Data</title>
+    <script src="results.js"></script>
+    <script>
+        function downloadPDF() {
+            fetch('/springboot/automation/results/pdf')
+                .then(response => response.blob())
+                .then(blob => {
+                    // Create a link element and set its href and download attributes
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = 'example.pdf';
+
+                    // Append the link element to the document body and click it
+                    document.body.appendChild(link);
+                    link.click();
+
+                    // Clean up the link element and revoke the object URL
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(link.href);
+                })
+                .catch(error => console.error(error));
+        }
+
+    </script>
+    <style>
+        /* Center the table and align all text in the center */
+        table {
+            margin: 0 auto;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Add a heading */
+        h1 {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Set font for the text */
+        body {
+            font-family: "Helvetica Neue", sans-serif;
+        }
+
+        label,
+        input[type="submit"],
+        select {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="button"] {
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>LATEST AUTOMATION RESULTS</h1>
+    <input type="button" value="Download PDF" onclick="downloadPDF()" />
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody id="data"></tbody>
+    </table>
+</body>
+
+</html>
